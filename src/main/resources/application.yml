@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: 0XLeBlanc
+  profiles:
+    active: dev
+
+
+

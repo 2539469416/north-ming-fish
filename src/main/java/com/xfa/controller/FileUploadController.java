@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileUploadController {
     @Resource
     private FileUploadService fileUploadService;
-
     @PostMapping("/csv/upload")
     public ResponseEntity csvUpload(MultipartFile[] files) {
         fileUploadService.getFilesList(files);

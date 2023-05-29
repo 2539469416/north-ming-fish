@@ -2,6 +2,9 @@ package com.xfa.util;
 
 import lombok.Data;
 
+/**
+ * @author liwen
+ */
 @Data
 public class ResultUtil {
     private String code;

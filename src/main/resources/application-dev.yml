@@ -4,3 +4,9 @@ logging:
   config: classpath:log4j2.xml
 file:
   path: D:/resource
+spring:
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 123456

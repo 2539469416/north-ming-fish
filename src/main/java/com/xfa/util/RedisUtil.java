@@ -1,8 +1,11 @@
 package com.xfa.util;
 
+import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.BoundListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Collection;
@@ -17,15 +20,10 @@ import java.util.concurrent.TimeUnit;
 
 
 
-@Configuration
-// @Component
+ @Component
 public class RedisUtil {
-    // @Autowired
-    private final RedisTemplate<String, Object> redisTemplate;
-
-    public RedisUtil(RedisTemplate<String, Object> redisTemplate) {
-        this.redisTemplate = redisTemplate;
-    }
+     @Resource
+    private RedisTemplate<String, Object> redisTemplate;
 
     /**
      * 指定缓存失效时间

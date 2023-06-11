@@ -1,4 +1,4 @@
-package com.xfa.entity;
+package com.xfa.response;
 
 import lombok.Data;
 
@@ -6,155 +6,154 @@ import lombok.Data;
  * @author 北冥有鱼
  */
 @Data
-public class IndicatorsEntity {
+public class HistoryTableResponse {
     /**
      * 前收盘价
      */
-    private double preClose;
+    private Double[] preClose;
 
     /**
      * 开盘价
      */
-    private double open;
+    private Double[] open;
 
     /**
      * 最高价
      */
-    private double high;
+    private Double[] high;
 
     /**
      * 最低价
      */
-    private double low;
+    private Double[] low;
 
     /**
      * 收盘价
      */
-    private double close;
+    private Double[] close;
 
     /**
      * 均价
      */
-    private double avgPrice;
+    private Double[] avgPrice;
 
     /**
      * 涨跌
      */
-    private double change;
+    private Double[] change;
 
     /**
      * 涨跌幅
      */
-    private double changeRatio;
+    private Double[] changeRatio;
 
     /**
      * 成交量
      */
-    private long volume;
+    private Long[] volume;
 
     /**
      * 成交额
      */
-    private double amount;
+    private Double[] amount;
 
     /**
      * 换手率
      */
-    private double turnoverRatio;
+    private Double[] turnoverRatio;
 
     /**
      * 成交笔数
      */
-    private long transactionAmount;
+    private Long[] transactionAmount;
 
     /**
      * 总股本
      */
-    private long totalShares;
+    private Long[] totalShares;
 
     /**
      * 总市值
      */
-    private double totalCapital;
+    private Double[] totalCapital;
 
     /**
      * A股流通股本
      */
-    private long floatSharesOfAShares;
+    private Long[] floatSharesOfAShares;
 
     /**
      * B股流通股本
      */
-    private long floatSharesOfBShares;
+    private Long[] floatSharesOfBShares;
 
     /**
      * A股流通市值
      */
-    private double floatCapitalOfAShares;
+    private Double[] floatCapitalOfAShares;
 
     /**
      * B股流通市值
      */
-    private double floatCapitalOfBShares;
+    private Double[] floatCapitalOfBShares;
 
     /**
      * 市盈率（TTM）
      */
-    private double peTtm;
+    private Double[] peTtm;
 
     /**
      * PE市盈率
      */
-    private double pe;
+    private Double[] pe;
 
     /**
      * PB市净率
      */
-    private double pb;
+    private Double[] pb;
 
     /**
      * PS市销率
      */
-    private double ps;
+    private Double[] ps;
 
     /**
      * PCF市现率
      */
-    private double pcf;
+    private Double[] pcf;
 
     /**
      * 交易状态
      */
-    private String thsTradingStatusStock;
+    private String[] thsTradingStatusStock;
 
     /**
      * 涨跌停状态
      */
-    private String thsUpAndDownStatusStock;
+    private String[] thsUpAndDownStatusStock;
 
     /**
      * 复权因子
      */
-    private double thsAfStock;
+    private Double[] thsAfStock;
 
     /**
      * 盘后成交量
      */
-    private long thsVolAfterTradingStock;
+    private Long[] thsVolAfterTradingStock;
 
     /**
      * 盘后成交笔数
      */
-    private long thsTransNumAfterTradingStock;
+    private Long[] thsTransNumAfterTradingStock;
 
     /**
      * 盘后成交额
      */
-    private double thsAmtAfterTradingStock;
+    private Double[] thsAmtAfterTradingStock;
 
     /**
      * 有效换手率
      */
-    private double thsValidTurnoverStock;
-
+    private Double[] thsValidTurnoverStock;
 }

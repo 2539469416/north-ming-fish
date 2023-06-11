@@ -12,7 +12,7 @@ class NorthMingFishApplicationTests {
     private HistoryMarketService historyMarketService;
     @Test
     void contextLoads() {
-        historyMarketService.getHistoryMarket("300033.SZ","2023-01-01","2023-01-07");
+        historyMarketService.getHistoryMarket("601633.SH","2023-01-01","2023-01-07");
     }
 
 }

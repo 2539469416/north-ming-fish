@@ -4,11 +4,10 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.TypeReference;
 import com.xfa.entity.IFindApiUrlEntity;
 import com.xfa.entity.RedisKeyEntity;
-import com.xfa.response.TokenResponse;
 import com.xfa.response.IFindResponse;
+import com.xfa.response.TokenResponse;
 import com.xfa.util.OkHttpUtils;
 import com.xfa.util.RedisUtil;
-import jakarta.annotation.Resource;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -16,20 +15,22 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Type;
+import javax.annotation.Resource;
 
 /**
  * @author 北冥有鱼
  */
 @Component
-@EnableScheduling
 @Log4j2
+@EnableScheduling
 public class IFindDataJob {
     @Value("${ths.refresh_token}")
     private String refreshToken;
 
     @Resource
     private RedisUtil redisUtil;
+
+
 
     /**
      * 初始化Token

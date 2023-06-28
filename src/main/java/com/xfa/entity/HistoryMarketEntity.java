@@ -1,171 +1,115 @@
 package com.xfa.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
  * @author 北冥有鱼
  */
 @Data
+@TableName("history_market")
 public class HistoryMarketEntity {
 
-    /**
-     * 股票代码
-     */
+    @TableId(value="id",type= IdType.AUTO)
+    private String id;
+
+    @TableField
     private String code;
 
-    /**
-     * 行情时间
-     */
+    @TableField
     private String time;
 
-    /**
-     * 前收盘价
-     */
+    @TableField
     private Double preClose;
 
-    /**
-     * 开盘价
-     */
+    @TableField
     private Double open;
 
-    /**
-     * 最高价
-     */
+    @TableField
     private Double high;
 
-    /**
-     * 最低价
-     */
+    @TableField
     private Double low;
 
-    /**
-     * 收盘价
-     */
+    @TableField
     private Double close;
 
-    /**
-     * 均价
-     */
+    @TableField
     private Double avgPrice;
 
-    /**
-     * 涨跌
-     */
-    private Double change;
+    @TableField
+    private Double changes;
 
-    /**
-     * 涨跌幅
-     */
+    @TableField
     private Double changeRatio;
 
-    /**
-     * 成交量
-     */
-    private long volume;
+    @TableField
+    private Long volume;
 
-    /**
-     * 成交额
-     */
+    @TableField
     private Double amount;
 
-    /**
-     * 换手率
-     */
+    @TableField
     private Double turnoverRatio;
 
-    /**
-     * 成交笔数
-     */
-    private long transactionAmount;
+    @TableField
+    private Long transactionAmount;
 
-    /**
-     * 总股本
-     */
-    private long totalShares;
+    @TableField
+    private Long totalShares;
 
-    /**
-     * 总市值
-     */
+    @TableField
     private Double totalCapital;
 
-    /**
-     * A股流通股本
-     */
-    private long floatSharesOfAShares;
+    @TableField
+    private Long floatSharesOfAShares;
 
-    /**
-     * B股流通股本
-     */
-    private long floatSharesOfBShares;
+    @TableField
+    private Long floatSharesOfBShares;
 
-    /**
-     * A股流通市值
-     */
+    @TableField
     private Double floatCapitalOfAShares;
 
-    /**
-     * B股流通市值
-     */
+    @TableField
     private Double floatCapitalOfBShares;
 
-    /**
-     * 市盈率（TTM）
-     */
+    @TableField
     private Double peTtm;
 
-    /**
-     * PE市盈率
-     */
+    @TableField
     private Double pe;
 
-    /**
-     * PB市净率
-     */
+    @TableField
     private Double pb;
 
-    /**
-     * PS市销率
-     */
+    @TableField
     private Double ps;
 
-    /**
-     * PCF市现率
-     */
+    @TableField
     private Double pcf;
 
-    /**
-     * 交易状态
-     */
+    @TableField
     private String thsTradingStatusStock;
 
-    /**
-     * 涨跌停状态
-     */
+    @TableField
     private String thsUpAndDownStatusStock;
 
-    /**
-     * 复权因子
-     */
+    @TableField
     private Double thsAfStock;
 
-    /**
-     * 盘后成交量
-     */
-    private long thsVolAfterTradingStock;
+    @TableField
+    private Long thsVolAfterTradingStock;
 
-    /**
-     * 盘后成交笔数
-     */
-    private long thsTransNumAfterTradingStock;
+    @TableField
+    private Long thsTransNumAfterTradingStock;
 
-    /**
-     * 盘后成交额
-     */
+    @TableField
     private Double thsAmtAfterTradingStock;
 
-    /**
-     * 有效换手率
-     */
+    @TableField
     private Double thsValidTurnoverStock;
 
 }

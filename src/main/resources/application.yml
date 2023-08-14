@@ -3,7 +3,6 @@ spring:
     name: 0XLeBlanc
   profiles:
     active: dev
-ths:
-  refresh_token: eyJzaWduX3RpbWUiOiIyMDIzLTA1LTI5IDE4OjAzOjM2In0=.eyJ1aWQiOiI2NzkwOTc4MTQifQ==.7A63078D1ACEBD8525F0F2CAE62AD74F7AC61EAF1DE53F02EAA4AA0FF3F6A954
-
+ioc:
+  threatbookKey: b14241f2d4c049b4be34a0595d57704e38ca62d3f5dc4b2292347c1b6ca41408
 

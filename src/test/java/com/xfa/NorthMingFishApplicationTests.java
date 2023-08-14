@@ -1,6 +1,6 @@
 package com.xfa;
 
-import com.xfa.service.impl.HistoryMarketServiceImpl;
+import com.xfa.service.impl.ThreatbookAPLServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -8,12 +8,10 @@ import javax.annotation.Resource;
 
 @SpringBootTest
 class NorthMingFishApplicationTests {
-
     @Resource
-    private HistoryMarketServiceImpl historyMarketServiceImpl;
+    private ThreatbookAPLServiceImpl threatbookAPLServiceImpl;
     @Test
-    void contextLoads() {
-        historyMarketServiceImpl.getHistoryMarket("601633.SH","2023-01-01","2023-06-28");
+    void test1(){
+        threatbookAPLServiceImpl.getThreatbookIPIOC("49.232.153.55");
     }
-
 }

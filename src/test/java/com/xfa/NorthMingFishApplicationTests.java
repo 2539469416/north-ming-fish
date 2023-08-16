@@ -18,6 +18,6 @@ class NorthMingFishApplicationTests {
     @Test
     void test1(){
 //        threatbookAPLServiceImpl.getThreatbookIPIOC("49.232.153.55");
-        foFaAPIService.getDomainInfo("hiwj.top");
+        foFaAPIService.getDomainInfo("49.232.153.55",true);
     }
 }

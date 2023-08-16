@@ -14,14 +14,14 @@ import java.util.List;
  * @author 北冥有鱼
  */
 @Service
-public class ThreatbookAPLServiceImpl {
+public class ThreatbookAPIServiceImpl {
     @Value("${ioc.threatbookKey}")
     private String threatbookKey;
 
     private static final String THREADBOOK_IP_URL = "https://api.threatbook.cn/v3/ip/query";
 
 
-    public void getThreatbookIPIOC(String ip) {
+    public ThreatbookIPResponse getThreatbookIPIOC(String ip) {
         String res = OkHttpUtils.builder().url(THREADBOOK_IP_URL)
                 .addParam("apikey", threatbookKey)
                 .addParam("resource", ip)
@@ -30,7 +30,7 @@ public class ThreatbookAPLServiceImpl {
                 .sync();
         JSONObject jsonObject = JSON.parseObject(res).getJSONObject("data").getJSONObject(ip);
         ThreatbookIPResponse threatbookIPResponse = convertJsonToClass(jsonObject);
-
+        return threatbookIPResponse;
     }
     //todo  rdn , updateTime , sumcurdomains , ips
     public ThreatbookIPResponse convertJsonToClass(JSONObject jsonObject) {

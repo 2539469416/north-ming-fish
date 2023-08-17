@@ -14,6 +14,9 @@ public class UrlUtils {
     public static String getDomainFromUrl(String source) {
         String fullDomain = "";
         try {
+            if (!source.contains("http://")){
+                source = "http://" + source;
+            }
             URL url = new URL(source);
             String host = url.getHost();         // 获取域名，例如 "www.example.com"
             fullDomain = host;

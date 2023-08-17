@@ -13,10 +13,7 @@ import com.xfa.util.UrlUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -30,7 +27,7 @@ public class FoFaAPIServiceImpl {
 
     private static final String FOFA_EMAIL = "z583985166@gmail.com";
 
-    public FoFaResponse getDomainInfo(String source, boolean isIp) {
+    public List<FofaBO> getDomainInfo(String source, boolean isIp) {
         String base64Code = CryptoUtil.base64Encode(source);
         String res = OkHttpUtils.builder().url(FOFA_SEARCH_URL)
                 .addParam("key", FOFA_KEY)
@@ -42,21 +39,68 @@ public class FoFaAPIServiceImpl {
                 .sync();
         JSONObject jsonObject = JSON.parseObject(res);
         List<FoFaResponse> foFaResponseList = convertJsonToResponse(jsonObject, isIp);
-        FofaBO fofaBO = new FofaBO();
-        Map<String, Long> countMap = foFaResponseList.stream().collect(Collectors.groupingBy(FoFaResponse::getHost, Collectors.counting()));
-        int max = 0;
-        final String[] topDomain = {""};
-        countMap.forEach((domain,count)->{
-            if (!UrlUtils.isIPv4(domain)) {
-                topDomain[0] = count > max ? domain : topDomain[0];
-            }
-        });
-        foFaResponseList.stream().forEach(item -> {
-            if (isIp) {
-                source.equals(item.getIp());
-            }
-        });
-        return null;
+        List<FofaBO> fofaBOList = new ArrayList<>();
+        Map<String, Long> countMap;
+        //按照ip查询
+        if (isIp) {
+            countMap = foFaResponseList.stream().collect(Collectors.groupingBy(FoFaResponse::getHost, Collectors.counting()));
+            countMap.forEach((domain, count) -> {
+                //排除host为ipv4
+                if (!UrlUtils.isIPv4(domain)) {
+                    FofaBO fofaBO = new FofaBO();
+                    fofaBO.setAccuracy((double) count / (double) foFaResponseList.size());
+                    fofaBO.setHost(domain);
+                    fofaBO.setIp(source);
+                    fofaBO.setSize((long) foFaResponseList.size());
+                    foFaResponseList.forEach(item -> {
+                        if (StringUtils.isNoneBlank(domain) && domain.equals(item.getDomain())) {
+                            if (StringUtils.isNoneBlank(item.getCity())) {
+                                fofaBO.setCity(item.getCity());
+                            }
+                            if (StringUtils.isNoneBlank(item.getIcp())) {
+                                fofaBO.setIcp(item.getIcp());
+                            }
+                            if (StringUtils.isNoneBlank(item.getOs())) {
+                                fofaBO.setOs(item.getOs());
+                            }
+                            if (StringUtils.isNoneBlank(item.getCert())) {
+                                fofaBO.setCert(item.getCert());
+                            }
+                        }
+                    });
+                    fofaBOList.add(fofaBO);
+                }
+            });
+        } else {
+            countMap = foFaResponseList.stream().collect(Collectors.groupingBy(FoFaResponse::getIp, Collectors.counting()));
+            countMap.forEach((ip, count) -> {
+                //排除host为ipv4
+                FofaBO fofaBO = new FofaBO();
+                fofaBO.setAccuracy((double) count / (double) foFaResponseList.size());
+                fofaBO.setIp(ip);
+                fofaBO.setHost(source);
+                fofaBO.setSize((long) foFaResponseList.size());
+                foFaResponseList.forEach(item -> {
+                    if (StringUtils.isNoneBlank(ip) && ip.equals(item.getIp())) {
+                        if (StringUtils.isNoneBlank(item.getCity())) {
+                            fofaBO.setCity(item.getCity());
+                        }
+                        if (StringUtils.isNoneBlank(item.getIcp())) {
+                            fofaBO.setIcp(item.getIcp());
+                        }
+                        if (StringUtils.isNoneBlank(item.getOs())) {
+                            fofaBO.setOs(item.getOs());
+                        }
+                        if (StringUtils.isNoneBlank(item.getCert())) {
+                            fofaBO.setCert(item.getCert());
+                        }
+                    }
+                });
+                fofaBOList.add(fofaBO);
+
+            });
+        }
+        return fofaBOList;
     }
 
     public List<FoFaResponse> convertJsonToResponse(JSONObject jsonObject, boolean isIp) {
